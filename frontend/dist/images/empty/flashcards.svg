@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" fill="none" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <linearGradient id="cardGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#6c5cff"/>
+      <stop offset="100%" stop-color="#4f3fe0"/>
+    </linearGradient>
+    <linearGradient id="pageGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f3f2ff"/>
+      <stop offset="100%" stop-color="#e8e6ff"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="15"/>
+      <feOffset dx="0" dy="8" result="offsetblur"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.25"/>
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Background decoration -->
+  <circle cx="520" cy="320" r="120" fill="#6c5cff" opacity=".15"/>
+  <circle cx="80" cy="80" r="100" fill="#22c6e8" opacity=".15"/>
+  <circle cx="400" cy="120" r="90" fill="#ec4899" opacity=".1"/>
+  
+  <!-- Stack of flashcards -->
+  <g transform="translate(40, 60)">
+    <!-- Card back -->
+    <rect x="30" y="30" width="220" height="280" rx="24" fill="#f3f2ff" stroke="#eceaf8" stroke-width="1"/>
+    <rect x="30" y="30" width="220" height="6" rx="3" fill="#c7c3e6"/>
+    
+    <!-- Card middle -->
+    <rect x="15" y="15" width="220" height="280" rx="24" fill="url(#pageGrad)" stroke="#d8d4f2" stroke-width="1" filter="url(#shadow)"/>
+    <rect x="15" y="15" width="220" height="6" rx="3" fill="#6c5cff" opacity=".3"/>
+    
+    <!-- Card front -->
+    <rect x="0" y="0" width="220" height="280" rx="24" fill="#ffffff" stroke="#d8d4f2" stroke-width="1" filter="url(#shadow)"/>
+    <rect x="0" y="0" width="220" height="6" rx="3" fill="url(#cardGrad)"/>
+    
+    <!-- Card content -->
+    <text x="30" y="70" font-family="system-ui, sans-serif" font-size="18" font-weight="700" fill="#15132e">What is</text>
+    <text x="30" y="98" font-family="system-ui, sans-serif" font-size="18" font-weight="700" fill="#15132e">photosynthesis?</text>
+    
+    <line x1="30" y1="125" x2="190" y2="125" stroke="#eceaf8" stroke-width="1"/>
+    
+    <rect x="30" y="145" width="120" height="40" rx="8" fill="#eceaf8"/>
+    <rect x="30" y="195" width="100" height="32" rx="8" fill="#eceaf8"/>
+    <rect x="30" y="235" width="140" height="32" rx="8" fill="#eceaf8"/>
+    
+    <!-- Back side preview -->
+    <g transform="translate(240, 40)" opacity=".85">
+      <rect x="0" y="0" width="220" height="280" rx="24" fill="#22c6e8" opacity=".15" stroke="#22c6e8" stroke-width="1" stroke-dasharray="6,6"/>
+      <circle cx="40" cy="60" r="12" fill="#22c6e8" opacity=".3"/>
+      <circle cx="110" cy="75" r="10" fill="#22c6e8" opacity=".2"/>
+      <circle cx="180" cy="95" r="14" fill="#22c6e8" opacity=".25"/>
+      <text x="110" y="200" font-family="system-ui, sans-serif" font-size="16" fill="#22c6e8" text-anchor="middle" font-weight="600">Answer</text>
+    </g>
+  </g>
+  
+  <!-- Sparkles -->
+  <g fill="#ffd84d" opacity=".8">
+    <circle cx="480" cy="100" r="4"/>
+    <circle cx="540" cy="180" r="3"/>
+    <circle cx="460" cy="280" r="5"/>
+    <circle cx="320" cy="260" r="4"/>
+    <circle cx="180" cy="340" r="3"/>
+  </g>
+</svg>

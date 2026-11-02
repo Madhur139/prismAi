@@ -1,0 +1,59 @@
+<!--
+  EMPTY LIBRARY ILLUSTRATION
+  Books waiting to be refracted into lessons - mirrors the Prism brand idea.
+  Inline SVG so it costs no network request and scales to any size.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 210" fill="none" role="img" aria-label="Illustration of a stack of books next to a prism splitting light into a spectrum">
+  <defs>
+    <linearGradient id="prismBeam" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0" />
+      <stop offset="1" stop-color="#ffffff" stop-opacity=".9" />
+    </linearGradient>
+    <linearGradient id="prismFace" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#8b7bff" stop-opacity=".5" />
+      <stop offset="1" stop-color="#4f3fe0" stop-opacity=".18" />
+    </linearGradient>
+    <linearGradient id="bookA" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#6c5cff" />
+      <stop offset="1" stop-color="#8b7bff" />
+    </linearGradient>
+    <linearGradient id="bookB" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#22c6e8" />
+      <stop offset="1" stop-color="#4f8cff" />
+    </linearGradient>
+    <linearGradient id="bookC" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#ff5d8f" />
+      <stop offset="1" stop-color="#ff9f43" />
+    </linearGradient>
+  </defs>
+
+  <!-- incoming white beam -->
+  <path d="M8 96 L186 88 L186 100 Z" fill="url(#prismBeam)" />
+
+  <!-- spectrum fan -->
+  <g opacity=".92">
+    <path d="M232 92 L314 52 L314 62 L232 95 Z" fill="#ff5d8f" />
+    <path d="M232 94 L314 66 L314 76 L232 97 Z" fill="#ff9f43" />
+    <path d="M232 96 L314 80 L314 90 L232 99 Z" fill="#ffd84d" />
+    <path d="M232 98 L314 94 L314 104 L232 101 Z" fill="#37e0a0" />
+    <path d="M232 100 L314 108 L314 118 L232 103 Z" fill="#2cb8ff" />
+    <path d="M232 102 L314 122 L314 132 L232 105 Z" fill="#8b7bff" />
+  </g>
+
+  <!-- prism -->
+  <path d="M186 40 L250 150 L122 150 Z" fill="url(#prismFace)" stroke="rgba(255,255,255,.55)" stroke-width="2" stroke-linejoin="round" />
+  <path d="M186 40 L186 150" stroke="rgba(255,255,255,.28)" stroke-width="1.5" />
+
+  <!-- book stack -->
+  <g>
+    <rect x="24" y="150" width="74" height="15" rx="4" fill="url(#bookA)" />
+    <rect x="32" y="134" width="70" height="15" rx="4" fill="url(#bookB)" />
+    <rect x="20" y="118" width="64" height="15" rx="4" fill="url(#bookC)" />
+    <rect x="30" y="102" width="46" height="14" rx="4" fill="url(#bookA)" opacity=".75" />
+  </g>
+
+  <!-- floating sparkles -->
+  <circle cx="96" cy="72" r="4" fill="#ffd84d" opacity=".9" />
+  <circle cx="118" cy="46" r="3" fill="#37e0a0" opacity=".8" />
+  <circle cx="72" cy="42" r="2.5" fill="#8b7bff" opacity=".8" />
+</svg>

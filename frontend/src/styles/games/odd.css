@@ -1,0 +1,360 @@
+/* ==========================================================================
+   EXTRA GAME ENGINES - shared stylesheet
+   1 odd one out ( .ooo- )   2 two true one false ( .ttf- )   3 anagram ( .anag- )
+
+   Every class here is prefixed so it can never clash with the main design
+   system in app.css. Colours come only from theme tokens, so light and dark
+   themes both work without any extra rules.
+   ========================================================================== */
+
+/* ---------- 1. option cards (odd one out + two true one false) ---------- */
+.ooo-game,
+.ttf-game {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.ooo-opts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+/* Statements are long, so they get one card per row. */
+.ttf-opts {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+.ooo-opt,
+.ttf-opt {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px;
+  min-height: 68px;
+  text-align: left;
+  border-radius: 18px;
+  background: var(--surface);
+  border: 2px solid var(--line-strong);
+  box-shadow: 0 4px 0 var(--line-strong);
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--ink);
+  transition: transform .12s var(--ease), box-shadow .12s var(--ease), border-color .2s var(--ease), background .2s var(--ease);
+}
+
+.ooo-opt:hover:not(:disabled),
+.ttf-opt:hover:not(:disabled) {
+  transform: translateY(-2px);
+  border-color: var(--gc, var(--brand));
+  box-shadow: 0 6px 0 color-mix(in srgb, var(--gc, var(--brand)) 40%, var(--line-strong));
+}
+
+.ooo-opt:active:not(:disabled),
+.ttf-opt:active:not(:disabled) {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 var(--line-strong);
+}
+
+.ooo-opt:focus-visible,
+.ttf-opt:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 3px;
+}
+
+.ooo-opt:disabled,
+.ttf-opt:disabled {
+  opacity: 1;
+  cursor: default;
+}
+
+.ooo-key,
+.ttf-key {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 11px;
+  background: var(--surface-3);
+  color: var(--muted);
+  font-weight: 800;
+  font-size: .88rem;
+  flex: none;
+}
+
+.ooo-text,
+.ttf-text {
+  flex: 1;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+/* Picked but not yet submitted. */
+.ooo-opt.picked,
+.ttf-opt.picked {
+  border-color: var(--gc, var(--brand));
+  background: color-mix(in srgb, var(--gc, var(--brand)) 10%, var(--surface));
+  box-shadow: 0 4px 0 color-mix(in srgb, var(--gc, var(--brand)) 45%, var(--line-strong));
+}
+
+.ooo-opt.correct,
+.ttf-opt.correct {
+  border-color: var(--good);
+  background: var(--good-soft);
+  box-shadow: 0 4px 0 var(--good);
+  animation: ooo-pop .4s var(--ease);
+}
+
+.ooo-opt.correct .ooo-key,
+.ttf-opt.correct .ttf-key {
+  background: var(--good);
+  color: #fff;
+}
+
+.ooo-opt.wrong,
+.ttf-opt.wrong {
+  border-color: var(--bad);
+  background: var(--bad-soft);
+  box-shadow: 0 4px 0 var(--bad);
+  animation: ooo-shake .4s var(--ease);
+}
+
+.ooo-opt.wrong .ooo-key,
+.ttf-opt.wrong .ttf-key {
+  background: var(--bad);
+  color: #fff;
+}
+
+.ooo-opt.dim,
+.ttf-opt.dim {
+  opacity: .45;
+}
+
+@keyframes ooo-pop {
+  40% {
+    transform: scale(1.03);
+  }
+}
+
+@keyframes ooo-shake {
+  25% {
+    transform: translateX(-6px);
+  }
+
+  75% {
+    transform: translateX(6px);
+  }
+}
+
+/* ---------- 2. shared bits of the option games ---------- */
+.ooo-task,
+.ttf-task {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin: 0;
+  color: var(--muted);
+  font-size: .9rem;
+  font-weight: 600;
+}
+
+.ooo-task .ico,
+.ttf-task .ico {
+  color: var(--gc, var(--brand));
+}
+
+.ooo-status,
+.ttf-status {
+  margin: 0;
+  text-align: center;
+  color: var(--muted);
+  font-size: .88rem;
+}
+
+.ooo-empty,
+.ttf-empty,
+.anag-empty {
+  margin: 0;
+  padding: 20px 16px;
+  text-align: center;
+  color: var(--muted);
+  background: var(--surface-2);
+  border: 1px dashed var(--line-strong);
+  border-radius: var(--r-md);
+}
+
+/* ---------- 3. anagram ---------- */
+.anag-game {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 6px 0;
+}
+
+/* The word being built - one slot per letter. */
+.anag-slots {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  max-width: 100%;
+}
+
+.anag-slot {
+  display: grid;
+  place-items: center;
+  width: 54px;
+  height: 54px;
+  border-radius: 16px;
+  background: var(--surface);
+  border: 2px dashed var(--line-strong);
+  font: 800 1.35rem var(--font-d);
+  color: var(--ink);
+  transition: background .2s var(--ease), border-color .2s var(--ease), box-shadow .2s var(--ease);
+}
+
+.anag-slot.filled {
+  border: 2px solid transparent;
+  background: color-mix(in srgb, var(--gc, var(--brand)) 16%, var(--surface));
+  box-shadow: 0 6px 14px -8px var(--gc, var(--brand));
+  animation: anag-pop .25s var(--ease);
+}
+
+/* The slot the next letter goes into. */
+.anag-slot.next {
+  border-color: var(--gc, var(--brand));
+  animation: anag-pulse 1.2s infinite;
+}
+
+.anag-slot.ok {
+  background: var(--good-soft);
+  border-color: var(--good);
+  color: var(--good);
+}
+
+.anag-slot.no {
+  background: var(--bad-soft);
+  border-color: var(--bad);
+  color: var(--bad);
+}
+
+@keyframes anag-pop {
+  40% {
+    transform: scale(1.08);
+  }
+}
+
+@keyframes anag-pulse {
+  50% {
+    background: color-mix(in srgb, var(--gc, var(--brand)) 12%, var(--surface));
+  }
+}
+
+/* The jumbled letter tiles. */
+.anag-bank {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  max-width: 560px;
+}
+
+.anag-tile {
+  width: 54px;
+  height: 54px;
+  border-radius: 16px;
+  background: var(--surface);
+  border: 2px solid var(--line-strong);
+  box-shadow: 0 4px 0 var(--line-strong);
+  font: 800 1.3rem var(--font-d);
+  color: var(--ink);
+  transition: transform .12s var(--ease), box-shadow .12s var(--ease), border-color .2s var(--ease), opacity .2s var(--ease);
+}
+
+.anag-tile:hover:not(:disabled) {
+  transform: translateY(-3px);
+  border-color: var(--gc, var(--brand));
+  box-shadow: 0 7px 0 color-mix(in srgb, var(--gc, var(--brand)) 40%, var(--line-strong));
+}
+
+.anag-tile:active:not(:disabled) {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 var(--line-strong);
+}
+
+.anag-tile:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 3px;
+}
+
+.anag-tile:disabled {
+  opacity: .22;
+  box-shadow: none;
+  cursor: default;
+}
+
+.anag-tools {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.anag-status {
+  margin: 0;
+  text-align: center;
+  color: var(--muted);
+  font-size: .88rem;
+}
+
+/* ---------- 4. small screens ---------- */
+@media (max-width: 640px) {
+  .ooo-opts {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .ooo-opt,
+  .ttf-opt {
+    padding: 13px 14px;
+    min-height: 58px;
+    gap: 11px;
+    font-size: .95rem;
+    border-radius: 15px;
+  }
+
+  .ooo-key,
+  .ttf-key {
+    width: 30px;
+    height: 30px;
+    border-radius: 10px;
+    font-size: .8rem;
+  }
+
+  .anag-game {
+    gap: 16px;
+  }
+
+  .anag-slot {
+    width: 42px;
+    height: 42px;
+    border-radius: 13px;
+    font-size: 1.05rem;
+  }
+
+  .anag-tile {
+    width: 44px;
+    height: 44px;
+    border-radius: 13px;
+    font-size: 1.05rem;
+  }
+
+  .anag-bank {
+    gap: 8px;
+  }
+}

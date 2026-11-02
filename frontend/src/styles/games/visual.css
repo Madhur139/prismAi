@@ -1,0 +1,247 @@
+/* ==========================================================================
+   GAME STYLES - visual games (multi label, sentence unscramble, timeline)
+   Uses the theme tokens from app.css so light and dark mode both work.
+   ========================================================================== */
+
+/* ---------- Multi label (diagram) ---------- */
+.mlbl-game {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.mlbl-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.mlbl-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 12px;
+  border-radius: var(--r-full, 999px);
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  color: var(--muted);
+  font-size: .82rem;
+  font-weight: 700;
+}
+
+.mlbl-chip.on {
+  background: var(--good-soft);
+  border-color: var(--good);
+  color: var(--good);
+}
+
+.hotspot-target.right {
+  border-color: var(--good);
+  background: var(--good-soft);
+}
+
+.hotspot-target.miss {
+  border-color: var(--bad);
+  background: var(--bad-soft);
+  animation: none;
+}
+
+/* ---------- Sentence unscramble ---------- */
+.uns-game {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.uns-line {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  min-height: 68px;
+  padding: 14px 16px;
+  border-radius: 18px;
+  background: var(--surface);
+  border: 2px dashed var(--line-strong);
+}
+
+.uns-placeholder {
+  color: var(--muted);
+  font-size: .9rem;
+}
+
+.uns-word {
+  padding: 8px 13px;
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--gc, var(--brand)) 12%, var(--surface));
+  border: 2px solid var(--gc, var(--brand));
+  font: 700 .98rem var(--font-d);
+  color: var(--ink);
+  transition: transform .12s;
+}
+
+.uns-word:hover:not(:disabled) {
+  transform: translateY(-2px);
+}
+
+.uns-bank {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.uns-chip {
+  padding: 11px 15px;
+  border-radius: 14px;
+  background: var(--surface);
+  border: 2px solid var(--line-strong);
+  box-shadow: 0 3px 0 var(--line-strong);
+  font: 700 .95rem var(--font-d);
+  color: var(--ink);
+  transition: transform .12s, box-shadow .12s, border-color .2s, opacity .2s;
+}
+
+.uns-chip:hover:not(:disabled) {
+  transform: translateY(-2px);
+  border-color: var(--gc, var(--brand));
+  box-shadow: 0 5px 0 color-mix(in srgb, var(--gc, var(--brand)) 40%, var(--line-strong));
+}
+
+.uns-chip:disabled {
+  opacity: .3;
+  box-shadow: none;
+}
+
+.uns-tools {
+  display: flex;
+  gap: 10px;
+}
+
+/* ---------- Timeline ---------- */
+.tl-game {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.tl-slots {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.tl-slot {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 13px 16px;
+  min-height: 62px;
+  text-align: left;
+  border-radius: 16px;
+  background: var(--surface);
+  border: 2px dashed var(--line-strong);
+  transition: border-color .2s, background .2s;
+}
+
+.tl-slot.filled {
+  border-style: solid;
+  border-color: var(--gc, var(--brand));
+  background: color-mix(in srgb, var(--gc, var(--brand)) 8%, var(--surface));
+}
+
+.tl-slot.right {
+  border-color: var(--good);
+  background: var(--good-soft);
+}
+
+.tl-slot.wrong {
+  border-color: var(--bad);
+  background: var(--bad-soft);
+}
+
+.tl-num {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  flex: none;
+  border-radius: 10px;
+  background: var(--surface-3);
+  color: var(--muted);
+  font: 800 .9rem var(--font-d);
+}
+
+.tl-slot.filled .tl-num {
+  background: var(--gc, var(--brand));
+  color: #fff;
+}
+
+.tl-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.tl-text b {
+  font-size: .76rem;
+  color: var(--muted);
+  letter-spacing: .02em;
+}
+
+.tl-text span {
+  font-weight: 600;
+  color: var(--ink);
+  overflow-wrap: anywhere;
+}
+
+.tl-bank {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.tl-chip {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 12px 15px;
+  text-align: left;
+  border-radius: 14px;
+  background: var(--surface);
+  border: 2px solid var(--line-strong);
+  box-shadow: 0 3px 0 var(--line-strong);
+  transition: transform .12s, box-shadow .12s, border-color .2s, opacity .2s;
+}
+
+.tl-chip b {
+  font-size: .76rem;
+  color: var(--muted);
+}
+
+.tl-chip span {
+  font: 700 .95rem var(--font-d);
+  color: var(--ink);
+}
+
+.tl-chip:hover:not(:disabled) {
+  transform: translateY(-2px);
+  border-color: var(--gc, var(--brand));
+}
+
+.tl-chip:disabled {
+  opacity: .3;
+  box-shadow: none;
+}
+
+.tl-tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+@media (max-width: 640px) {
+  .uns-line {
+    min-height: 56px;
+  }
+}

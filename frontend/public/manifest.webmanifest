@@ -1,0 +1,19 @@
+{
+  "name": "Prism AI — learn anything, play your way",
+  "short_name": "Prism AI",
+  "description": "Prism AI turns any topic or photo of your notes into playable, adaptive lessons.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#0a0919",
+  "theme_color": "#0b0a1a",
+  "icons": [
+    {
+      "src": "/prism-logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

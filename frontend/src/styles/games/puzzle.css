@@ -1,0 +1,258 @@
+/* ==========================================================================
+   GAME STYLES - puzzle games (cloze, memory match, odd equation)
+   Uses the theme tokens from app.css so light and dark mode both work.
+   ========================================================================== */
+
+/* ---------- Cloze ---------- */
+.cloze-game {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+
+.cloze-sentence {
+  width: 100%;
+  padding: 24px 22px;
+  border-radius: 20px;
+  background: var(--surface);
+  border: 2px solid var(--line-strong);
+  box-shadow: 0 4px 0 var(--line-strong);
+  font: 600 clamp(1rem, 2.2vw, 1.2rem) var(--font-d);
+  line-height: 2.1;
+  color: var(--ink);
+}
+
+.cloze-input {
+  display: inline-block;
+  width: 9ch;
+  margin: 0 6px;
+  padding: 4px 8px;
+  font: 800 1rem var(--font-d);
+  text-align: center;
+  color: var(--ink);
+  background: var(--surface-2);
+  border: 2px solid var(--gc, var(--brand));
+  border-radius: 10px;
+  outline: none;
+  transition: box-shadow .2s, background .2s;
+}
+
+.cloze-input:focus {
+  box-shadow: 0 0 0 5px color-mix(in srgb, var(--gc, var(--brand)) 18%, transparent);
+  background: var(--surface);
+}
+
+.cloze-input:disabled {
+  opacity: 1;
+}
+
+.cloze-tools {
+  display: flex;
+  gap: 10px;
+}
+
+.cloze-empty,
+.mem-empty,
+.oddeq-empty,
+.uns-empty,
+.tl-empty,
+.mlbl-empty {
+  padding: 26px;
+  text-align: center;
+  color: var(--muted);
+  border-radius: 18px;
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+}
+
+/* ---------- Memory match ---------- */
+.mem-game {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.mem-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 12px;
+}
+
+.mem-card {
+  position: relative;
+  min-height: 104px;
+  padding: 14px;
+  border-radius: 18px;
+  border: 2px solid var(--line-strong);
+  background: var(--surface-2);
+  box-shadow: 0 4px 0 var(--line-strong);
+  transition: transform .18s var(--ease), background .2s, border-color .2s, box-shadow .18s;
+}
+
+.mem-card:hover:not(:disabled) {
+  transform: translateY(-3px);
+  border-color: var(--gc, var(--brand));
+}
+
+.mem-card.up {
+  background: var(--surface);
+  border-color: var(--gc, var(--brand));
+  box-shadow: 0 4px 0 color-mix(in srgb, var(--gc, var(--brand)) 45%, var(--line-strong));
+}
+
+.mem-card.done {
+  border-color: var(--good);
+  background: var(--good-soft);
+  box-shadow: none;
+  opacity: .8;
+}
+
+.mem-face {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  min-height: 76px;
+  font: 700 .95rem var(--font-d);
+  color: var(--ink);
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+.mem-card.down .mem-face {
+  color: var(--muted);
+  opacity: .55;
+}
+
+.mem-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.mem-count {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: .88rem;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+/* ---------- Odd equation ---------- */
+.oddeq-game {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.oddeq-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  width: 100%;
+}
+
+.oddeq-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 18px 16px;
+  min-height: 72px;
+  border-radius: 18px;
+  background: var(--surface);
+  border: 2px solid var(--line-strong);
+  box-shadow: 0 4px 0 var(--line-strong);
+  font: 800 1.1rem var(--font-d);
+  color: var(--ink);
+  transition: transform .12s var(--ease), box-shadow .12s, border-color .2s, background .2s;
+}
+
+.oddeq-card:hover:not(:disabled) {
+  transform: translateY(-2px);
+  border-color: var(--gc, var(--brand));
+  box-shadow: 0 6px 0 color-mix(in srgb, var(--gc, var(--brand)) 40%, var(--line-strong));
+}
+
+.oddeq-card:disabled {
+  opacity: 1;
+  cursor: default;
+}
+
+.oddeq-key {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  flex: none;
+  border-radius: 10px;
+  background: var(--surface-3);
+  color: var(--muted);
+  font: 800 .85rem var(--font-d);
+}
+
+.oddeq-text {
+  flex: 1;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.oddeq-ok {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  flex: none;
+  border-radius: 50%;
+  background: var(--good);
+  color: #fff;
+}
+
+.oddeq-card.correct {
+  border-color: var(--good);
+  background: var(--good-soft);
+  box-shadow: 0 4px 0 var(--good);
+}
+
+.oddeq-card.correct .oddeq-key {
+  background: var(--good);
+  color: #fff;
+}
+
+.oddeq-card.wrong {
+  border-color: var(--bad);
+  background: var(--bad-soft);
+  box-shadow: 0 4px 0 var(--bad);
+}
+
+.oddeq-card.wrong .oddeq-key {
+  background: var(--bad);
+  color: #fff;
+}
+
+.oddeq-card.dim {
+  opacity: .5;
+}
+
+@media (max-width: 640px) {
+  .oddeq-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .mem-grid {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  }
+
+  .mem-card {
+    min-height: 88px;
+  }
+
+  .cloze-input {
+    width: 7ch;
+  }
+}

@@ -1,0 +1,4 @@
+/* Tailwind layers (kept so utility classes still work). The app's own design system lives in styles/app.css. */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

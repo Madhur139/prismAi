@@ -1,0 +1,9 @@
+{
+  "name": "prism-ai",
+  "private": true,
+  "scripts": {
+    "install:all": "npm --prefix prism-backend install && npm --prefix frontend install",
+    "dev:api": "npm --prefix prism-backend run dev",
+    "dev:web": "npm --prefix frontend run dev"
+  }
+}

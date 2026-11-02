@@ -1,0 +1,41 @@
+<!--
+  EMPTY PROGRESS ILLUSTRATION
+  A rising set of bars with a spark - used when a learner has no activity yet.
+  Inline SVG so it costs no network request and scales to any size.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" fill="none" role="img" aria-label="Illustration of an empty progress chart with a rising bar and a spark">
+  <defs>
+    <linearGradient id="barGrad" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0" stop-color="#4f3fe0" stop-opacity=".35" />
+      <stop offset="1" stop-color="#7c6cff" />
+    </linearGradient>
+    <linearGradient id="barGradHi" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0" stop-color="#22c6e8" stop-opacity=".4" />
+      <stop offset="1" stop-color="#22c6e8" />
+    </linearGradient>
+    <linearGradient id="trendLine" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#8b7bff" stop-opacity=".2" />
+      <stop offset="1" stop-color="#8b7bff" />
+    </linearGradient>
+  </defs>
+
+  <!-- soft ground line -->
+  <path d="M40 164 H288" stroke="rgba(124,108,255,.18)" stroke-width="2" stroke-linecap="round" />
+
+  <!-- bars -->
+  <rect x="56" y="124" width="30" height="40" rx="7" fill="url(#barGrad)" opacity=".45" />
+  <rect x="104" y="104" width="30" height="60" rx="7" fill="url(#barGrad)" opacity=".7" />
+  <rect x="152" y="78" width="30" height="86" rx="7" fill="url(#barGrad)" />
+  <rect x="200" y="52" width="30" height="112" rx="7" fill="url(#barGradHi)" />
+
+  <!-- dashed trend line with a spark at the tip -->
+  <path d="M62 116 L112 96 L160 70 L212 40" stroke="url(#trendLine)" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="2 7" />
+  <g transform="translate(214 36)">
+    <path d="M0 -14 L3.8 -3.8 L14 0 L3.8 3.8 L0 14 L-3.8 3.8 L-14 0 L-3.8 -3.8 Z" fill="#ffd84d" />
+  </g>
+
+  <!-- floating dots -->
+  <circle cx="258" cy="66" r="3.5" fill="#ff5d8f" opacity=".85" />
+  <circle cx="280" cy="104" r="2.5" fill="#37e0a0" opacity=".8" />
+  <circle cx="44" cy="60" r="3" fill="#8b7bff" opacity=".7" />
+</svg>
