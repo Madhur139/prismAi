@@ -6,7 +6,6 @@
 import React, { useEffect } from 'react';
 import { api } from '../api/client.js';
 import { Icon } from '../components/Icon.jsx';
-import { Panel } from '../components/ui.jsx';
 import { AchievementBadge } from '../components/AchievementBadge.jsx';
 import { BADGES, earned, checkBadges, badgeOf } from '../utils/achievements.js';
 import { readStats, setStat } from '../utils/stats.js';

@@ -67,7 +67,7 @@ export function Dashboard({ user, progress, lessons, loading, activity = [] }) {
         </div>
       </section>
 
-      {lessons.length && <DailyChallenge lessons={lessons} notify={notify} />}
+      {lessons.length > 0 && <DailyChallenge lessons={lessons} notify={notify} />}
 
       <section className="quick-grid" data-reveal="">
         <button className="quick" onClick={() => go('/app/write')}><span style={{ '--c': '#06b6d4' }}><Icon name="pencil" size={22} /></span><b>Write & AI check</b><small>Answer in your words</small></button>

@@ -12,8 +12,23 @@ import { gameIcon } from '../constants/games.js';
 import { go, playLessonUrl } from '../utils/router.js';
 
 const KEY = 'prism_daily';
+const DEFAULT_TYPE = 'MULTIPLE_CHOICE';
 
 function todayKey() { return new Date().toLocaleDateString('en-CA'); }
+
+/** A challenge must always have the fields the card renders, even when the
+ *  lessons list came from the API without its game details. */
+function normalizeChallenge(c) {
+  if (!c) return null;
+  return {
+    ...c,
+    lesson: c.lesson || 'Lesson',
+    concept: c.concept || 'General',
+    game: c.game || 'Answer the question',
+    type: c.type || DEFAULT_TYPE,
+    answer: c.answer || '',
+  };
+}
 
 export function DailyChallenge({ lessons, notify }) {
   const [challenge, setChallenge] = useState(null);
@@ -22,16 +37,30 @@ export function DailyChallenge({ lessons, notify }) {
   useEffect(() => {
     const stored = localStorage.getItem(KEY);
     if (stored) {
-      try { const c = JSON.parse(stored); if (c.date === todayKey()) { setChallenge(c.challenge); return; } } catch {}
+      try {
+        const data = JSON.parse(stored);
+        // New shape is { date, challenge }; older builds stored the challenge
+        // itself. Accept both so a stale entry cannot break the dashboard.
+        const c = data?.challenge || data;
+        if (c && c.date === todayKey()) { setChallenge(normalizeChallenge(c)); return; }
+      } catch {}
     }
-    if (!lessons?.length) return;
+    if (!lessons?.length) { setChallenge(null); return; }
     const lesson = lessons[Math.floor(Math.random() * lessons.length)];
-    const concepts = lesson.concepts || [];
-    const concept = concepts[Math.floor(Math.random() * concepts.length)];
-    const games = concept.microGames || [];
-    const game = games[Math.floor(Math.random() * games.length)] || {};
-    const c = { lessonId: lesson._id, lesson: lesson.topic, concept: concept.conceptName, game: game.prompt || 'Answer the question', type: game.type, answer: game.answer || '', date: todayKey() };
-    localStorage.setItem(KEY, JSON.stringify(c));
+    const concepts = lesson?.concepts || [];
+    const concept = concepts.length ? concepts[Math.floor(Math.random() * concepts.length)] : null;
+    const games = concept?.microGames || [];
+    const game = games.length ? games[Math.floor(Math.random() * games.length)] : null;
+    const c = {
+      lessonId: lesson._id,
+      lesson: lesson.topic || 'Lesson',
+      concept: concept?.conceptName || 'General',
+      game: game?.prompt || 'Answer the question',
+      type: game?.type || DEFAULT_TYPE,
+      answer: game?.answer || '',
+      date: todayKey(),
+    };
+    try { localStorage.setItem(KEY, JSON.stringify({ date: c.date, challenge: c })); } catch {}
     setChallenge(c);
   }, [lessons]);
 
@@ -46,7 +75,7 @@ export function DailyChallenge({ lessons, notify }) {
     <Panel title="Daily challenge" subtitle="One question, every day — same for every learner.">
       <div className="daily-card">
         <div className="daily-head">
-          <span className="daily-chip"><Icon name={gameIcon(challenge.type) || 'target'} size={14} /> {challenge.type.replace(/_/g, ' ')}</span>
+          <span className="daily-chip"><Icon name={gameIcon(challenge.type) || 'target'} size={14} /> {String(challenge.type || DEFAULT_TYPE).replace(/_/g, ' ')}</span>
           <span className="daily-source">{challenge.lesson} · {challenge.concept}</span>
         </div>
         <div className="daily-question">{challenge.game}</div>
