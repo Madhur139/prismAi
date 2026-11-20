@@ -6,6 +6,7 @@ import React from 'react';
 import { Icon } from '../components/Icon.jsx';
 import { badgeOf } from '../utils/achievements.js';
 
+
 export function AchievementBadge({ id, small = false }) {
   const b = badgeOf(id);
   if (!b) return null;

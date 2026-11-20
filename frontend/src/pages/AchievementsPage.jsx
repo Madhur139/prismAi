@@ -11,6 +11,9 @@ import { AchievementBadge } from '../components/AchievementBadge.jsx';
 import { BADGES, earned, checkBadges, badgeOf } from '../utils/achievements.js';
 import { readStats, setStat } from '../utils/stats.js';
 import { ART } from '../utils/coverImage.js';
+import { Empty, Panel } from '../components/ui.jsx';
+import { go } from '../utils/router.js';
+
 
 export function Achievements({ notify }) {
   const badges = earned();
